@@ -79,7 +79,9 @@ def clearBadData(data, acceptableKeys):
 @limiter.limit("5 per hour")
 def createBoard():
   data = json.loads(request.data)
-  cache = mycol.find_one({'boardName': data['boardName']})
+  # Sanitize boardName to prevent NoSQL injection
+  board_name = str(data.get('boardName', ''))
+  cache = mycol.find_one({'boardName': board_name})
   if (cache):
     return bad_request('Board Name Already Taken!!')
 
@@ -241,4 +243,6 @@ def authMethod(boardName, password, pwtype):
   return jsonify(success=True)
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0',port=5001, debug=True)
+  import os
+  debug_mode = os.getenv('DEBUG', 'False').lower() == 'true'
+  app.run(host='0.0.0.0', port=5001, debug=debug_mode)
