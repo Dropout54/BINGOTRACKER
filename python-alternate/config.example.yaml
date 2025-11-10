@@ -1,0 +1,185 @@
+# Server Configuration
+server:
+  host: "0.0.0.0"
+  port: 8000
+  debug: false
+  secret_key: "change-this-to-a-random-secret-key-in-production"
+  
+# Database Configuration
+database:
+  # Use "sqlite" for simple setup, "postgresql" for production
+  type: "sqlite"
+  
+  # SQLite configuration
+  path: "data/bingo.db"
+  
+  # PostgreSQL configuration (if type is "postgresql")
+  # url: "postgresql://user:password@localhost:5432/bingo"
+
+# Discord Integration
+discord:
+  # Webhook URLs for different notification types
+  webhooks:
+    main: ""  # General announcements
+    drops: ""  # Item drop notifications
+    bingo: ""  # Bingo tile completions
+  
+  # Optional Discord Bot (alternative to webhooks)
+  bot:
+    enabled: false
+    token: ""  # Your Discord bot token
+    command_prefix: "!"
+    guild_id: null  # Optional: restrict to specific guild
+
+# Wise Old Man Integration
+wiseoldman:
+  enabled: true
+  group_id: null  # Your WOM group ID
+  api_url: "https://api.wiseoldman.net/v2"
+  update_interval: 3600  # Seconds between automatic updates
+
+# Google Sheets Integration (optional, for clan events)
+google_sheets:
+  enabled: false
+  sheet_id: ""
+  api_key: ""
+  cache_duration: 300  # Seconds
+
+# Drop Monitoring Configuration
+monitoring:
+  # Method: "logfile", "ocr", "manual", or "discord"
+  method: "logfile"
+  
+  # Log file monitoring (recommended)
+  logfile:
+    # Path to RuneLite chat logs
+    path: "~/.runelite/chatlogs"
+    scan_interval: 5  # Seconds
+    patterns:
+      - "Valuable drop:"
+      - "Untradeable drop:"
+      - "You have a funny feeling"
+      - "You feel something weird"
+  
+  # OCR monitoring (requires Tesseract)
+  ocr:
+    enabled: false
+    # Screen region to capture [x, y, width, height]
+    region: [100, 100, 400, 300]
+    scan_interval: 10  # Seconds
+    tesseract_path: "/usr/bin/tesseract"
+    confidence_threshold: 0.8
+  
+  # Drop filters
+  filters:
+    min_rarity: 64  # 1/64 or rarer
+    min_value: 10000  # GP
+    
+    # Always notify for these items
+    whitelist:
+      - "Dragon warhammer"
+      - "Twisted bow"
+      - "Scythe of vitur"
+      - "Elysian sigil"
+    
+    # Never notify for these items
+    blacklist:
+      - "Coins"
+      - "Pure essence"
+      - "Grimy herbs"
+    
+    # Always notify for unique drops
+    always_unique: true
+
+# Security Configuration
+security:
+  # Password hashing
+  password_hash_rounds: 12
+  
+  # Session management
+  session_timeout: 3600  # Seconds
+  session_cookie_secure: false  # Set to true in production with HTTPS
+  session_cookie_httponly: true
+  
+  # Rate limiting
+  rate_limit:
+    enabled: true
+    default: "100 per hour"
+    api: "1000 per hour"
+  
+  # Login security
+  max_login_attempts: 5
+  lockout_duration: 300  # Seconds
+
+# Caching Configuration (optional)
+cache:
+  enabled: false
+  type: "simple"  # "simple", "redis", or "memcached"
+  
+  # Redis configuration
+  redis:
+    url: "redis://localhost:6379/0"
+    default_timeout: 300  # Seconds
+
+# Logging Configuration
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR, CRITICAL
+  format: "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+  
+  # Log files
+  files:
+    app: "logs/bingo-tracker.log"
+    monitor: "logs/monitor.log"
+    api: "logs/api.log"
+  
+  # Log rotation
+  rotation:
+    max_bytes: 10485760  # 10MB
+    backup_count: 5
+
+# Notification Settings
+notifications:
+  # Cooldown between same notifications (seconds)
+  cooldown: 60
+  
+  # Batch notifications
+  batch_enabled: false
+  batch_interval: 300  # Seconds
+  batch_max_size: 10
+
+# Tile Auto-Completion
+auto_completion:
+  enabled: true
+  check_interval: 300  # Seconds
+  
+  # Which tile types to auto-check
+  tile_types:
+    - "skill"
+    - "boss"
+    - "experience"
+
+# Backup Configuration
+backup:
+  enabled: true
+  interval: 86400  # Daily
+  keep_count: 7
+  path: "backups/"
+
+# Performance Settings
+performance:
+  # Database connection pooling
+  db_pool_size: 10
+  db_max_overflow: 20
+  db_pool_timeout: 30
+  
+  # Async processing
+  async_enabled: false
+  async_workers: 4
+
+# Feature Flags
+features:
+  leaderboard_public: true
+  manual_drop_entry: true
+  screenshot_upload: true
+  csv_export: true
+  api_docs: true

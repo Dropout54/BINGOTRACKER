@@ -1,0 +1,243 @@
+.dashboard {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+.dashboard-header {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  color: #333;
+  font-size: 2em;
+}
+
+.dashboard-controls {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.dashboard-controls label {
+  color: #666;
+}
+
+.dashboard-controls select {
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.refresh-btn {
+  padding: 8px 16px;
+  background: #667eea;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.refresh-btn:hover {
+  background: #5568d3;
+}
+
+.dashboard-content {
+  display: grid;
+  gap: 20px;
+}
+
+.board-selector {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.board-selector h2 {
+  margin-top: 0;
+  color: #333;
+}
+
+.board-input {
+  width: 100%;
+  padding: 10px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.leaderboard-section,
+.drops-section,
+.stats-section {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.leaderboard-section h2,
+.drops-section h2,
+.stats-section h2 {
+  margin-top: 0;
+  color: #333;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 10px;
+}
+
+.leaderboard {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  transition: transform 0.2s;
+}
+
+.leaderboard-item:hover {
+  transform: translateX(5px);
+}
+
+.rank {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #667eea;
+  min-width: 50px;
+}
+
+.team-info {
+  flex: 1;
+}
+
+.team-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.team-stats {
+  display: flex;
+  gap: 15px;
+  color: #666;
+}
+
+.points {
+  font-weight: bold;
+  color: #667eea;
+}
+
+.drops-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.drop-item {
+  padding: 12px;
+  background: #f8f9fa;
+  border-radius: 8px;
+  border-left: 4px solid #28a745;
+}
+
+.drop-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.player-name {
+  font-weight: bold;
+  color: #333;
+}
+
+.team-badge {
+  background: #667eea;
+  color: white;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.85em;
+}
+
+.drop-details {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 5px;
+}
+
+.item-name {
+  font-weight: bold;
+  color: #28a745;
+}
+
+.item-value {
+  color: #ffc107;
+}
+
+.item-rarity {
+  color: #dc3545;
+}
+
+.drop-time {
+  font-size: 0.85em;
+  color: #999;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 3em;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  font-size: 1.1em;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .dashboard-controls {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
